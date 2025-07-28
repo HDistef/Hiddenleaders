@@ -1,0 +1,17 @@
+{
+    "name": "hiddenleaders",
+    "version": "1.0.0",
+    "description": "",
+    "main": "HiddenLeaders.js",
+    "scripts": {
+      "build:scss": "sass --no-source-map modules/css/hiddenleaders.scss hiddenleaders.css",
+      "watch:scss": "sass --watch modules/css/hiddenleaders.scss hiddenleaders.css",
+      "watch": "npm run watch:scss",
+      "build": "npm run build:scss"
+    },
+    "author": "Shun",
+    "license": "MIT",
+    "devDependencies": {
+      "sass": "^1.32.6"
+    }
+  }

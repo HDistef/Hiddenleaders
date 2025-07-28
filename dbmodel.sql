@@ -1,0 +1,58 @@
+
+-- ------
+-- BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
+-- HiddenLeaders implementation : © Hervé DI STEFANO hdistef7@gmail.com
+-- 
+-- This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
+-- See http://en.boardgamearena.com/#!doc/Studio for more information.
+-- -----
+
+-- dbmodel.sql
+
+-- This is the file where you are describing the database schema of your game
+-- Basically, you just have to export from PhpMyAdmin your table structure and copy/paste
+-- this export here.
+-- Note that the database itself and the standard tables ("global", "stats", "gamelog" and "player") are
+-- already created and must not be created here
+
+-- Note: The database schema is created from this file when the game starts. If you modify this file,
+--       you have to restart a game to see your changes in database.
+
+-- Example 1: create a standard "card" table to be used with the "Deck" tools (see example game "hearts"):
+
+CREATE TABLE IF NOT EXISTS `card` (
+  `card_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `card_type` varchar(16) NOT NULL,
+  `card_type_arg` int(11) NOT NULL,
+  `card_location` varchar(16) NOT NULL,
+  `card_location_arg` int(11) NOT NULL,
+  PRIMARY KEY (`card_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `cardInPlay` (
+  `order_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `card_id` int(11) NOT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- add info about first player
+ ALTER TABLE `player` ADD `player_leader_id` int(11) NOT NULL DEFAULT 0;
+
+-- For expansion
+CREATE TABLE IF NOT EXISTS `artefact` (
+  `artefact_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `artefact_uses` int(11) NOT NULL,
+  `artefact_player_id` int(11) NOT NULL,
+  PRIMARY KEY (`artefact_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+CREATE TABLE IF NOT EXISTS `corruption` (
+  `card_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `card_type` varchar(16) NOT NULL,
+  `card_type_arg` int(11) NOT NULL,
+  `card_location` varchar(16) NOT NULL,
+  `card_location_arg` int(11) NOT NULL,
+  PRIMARY KEY (`card_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+

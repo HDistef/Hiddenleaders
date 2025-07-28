@@ -1,0 +1,452 @@
+/**
+ *------
+ * BGA framework: © Gregory Isabelli <gisabelli@boardgamearena.com> & Emmanuel Colin <ecolin@boardgamearena.com>
+ * HiddenLeaders implementation : © Hervé DI STEFANO hdistef7@gmail.com
+ *
+ * This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
+ * See http://en.boardgamearena.com/#!doc/Studio for more information.
+ * -----
+ *
+ * hiddenleaders.css
+ *
+ * HiddenLeaders stylesheet
+ *
+ */
+
+/*
+    This is the CSS stylesheet of your game User Interface.
+    
+    Styles defined on this file will be applied to the HTML elements you define in your
+    HTML template (hiddenleaders_hiddenleaders.tpl), and to HTML elements you create dynamically
+    (in hiddenleaders.js).
+    
+    Usually, you are using CSS to:
+    
+    1°) define the overall layout of your game
+        (ex: place the board on the top left, place player's hand beside, place the deck on the right, ...).
+
+    2°) create your CSS-sprites:
+        All images of your games should be gathered into a small number of image files. Then, using
+        background-image and background-position CSS properties, you create HTML blocks that can 
+        display these images correctly (see example below).
+    
+    3°) ... anything else:
+        It is really easy to add and remove CSS classes dynamically from your Javascript with
+        dojo.addClass and dojo.removeClass. It is also easy to check if an element has a class
+        (dojo.hasClass) or to get all elements with a specific class (dojo.query). This is why,
+        very often, using CSS classes for the logic of your user interface allow you to do complex
+        thing easily.
+        
+        
+     Note: on the production platform, this file will be compressed and comments will be removed.
+           Consequently, don't hesitate to put as many comments as necessary.
+*/
+
+
+/* Note: you must not use any @import directive */
+
+
+/********* You can start writing your CSS below this line: **********/
+
+@import 'bga-cards';
+@import 'bga-jump-to';
+@import 'bga-zoom';
+@import 'modal';
+@import 'cards';
+@import 'playerboards';
+@import 'logs';
+@import 'score';
+
+/** Board table layout **/
+
+#card-pick {
+    &[data-visible="false"] {
+        display: none;
+    }
+    // position:absolute;
+    // z-index: 10;
+    // justify-content: center;
+    // width: inherit;
+    // background-color: rgba(0,0,0,0.5);
+    // padding: 10px 0 10px 0;
+    
+    // &.card-pick-fixed {
+    //     position:fixed;
+    //     top: 50px;
+    // }
+    
+    position:absolute;
+    z-index: 10;
+    width: -webkit-fill-available;
+    margin: 5px -1px 0px -5px;
+    padding: 5px 5px;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.5);
+
+    --cardwidth: 169px;
+    --cardheight: 236px;
+}
+
+#all_area {
+    --cardwidth: 169px;
+    --cardheight: 236px;
+    height:auto;
+  //transform: scale(1);
+  //transform-origin: top left;
+  //margin: 0px 10px;
+}
+
+#tabs-container {
+    grid-column: 1;
+    grid-row:2;
+    //position: absolute;
+
+    .hd-tab {
+        height:auto;
+        width: 130px;
+
+        text-transform: capitalize;
+        //font-size: 14px;
+        font-weight: bold;
+        text-align:right;
+
+        border-width: 2px;
+        border-style: solid;
+        cursor: pointer;
+        padding: 3px 5px 3px 10px;
+        margin: 0px 0px 10px -10px;
+        background: white;
+        
+        transition: margin 0.3s;
+
+        &:hover {
+            margin-left: -4px;
+        }
+
+    }
+}
+
+// #icon-overview {
+//     //position: relative;
+//     width: var(--cardwidth);
+//     height: var(--cardheight);
+
+//     grid-column: 3;
+//     grid-row: 1;
+//     place-self: start start;
+    
+//     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+//     border-radius: 10px;
+//     background-image: url('img/icon_overview.jpg');
+//     background-size: auto 100%;
+// }
+
+#win-conditions {
+    //position: relative;
+    width: var(--cardwidth);
+    height: var(--cardheight);
+
+    grid-column: 1;
+    grid-row: 3;
+    place-self: end end;
+    
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    background-image: url('img/winning-conditions.jpg');
+    &[data-expansion="1"] {
+        background-image: url('img/fl_winning-conditions.jpg');
+    }
+    background-size: auto 100%;
+
+    .gametext {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        width: 154px;
+        margin-left: 10px;
+        margin-right: 5px;
+  
+        .gametext-title {
+           font-family: Bangers;
+           font-size: 14px;
+           font-weight: bolder;
+           text-align: center;
+           margin-top: 9px;
+        }
+        .gametext-description {
+            position: absolute;
+            font-family: AveriaSandLibre;
+            font-size: 9px;
+            // strong {
+            //     font-weight: bolder;
+            //     letter-spacing: -.1em;
+            // }
+        }
+  
+        .gametext-undead {
+            margin-top: 61px;
+        }
+        .gametext-water_folk {
+            margin-top: 113px;
+        }
+        .gametext-empire {
+            margin-top: 160px;
+            span {
+                color: #4fc720;
+            }
+        }
+        .gametext-tribes {
+            margin-top: 212px;
+            span {
+                color: #d30606;
+            }
+        }
+  
+        // .gametext-divider {
+        //    height: 4px;
+        //    //background-image: url(img/spritesheet.png);
+        //    background-size: 300px 20px;
+        //    width: 53px;
+        // }
+    }
+}
+
+#central_area {
+    position:relative;
+    display:grid;
+    grid-template-columns: auto min-content auto;
+    grid-template-rows: var(--cardwidth) min-content auto;
+    width:100%;
+}
+
+#board {
+    width: 900px;
+    height: 400px;
+    background-image: url('img/gameboard.jpg');
+    background-size: auto 100%;
+    box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.5);
+    grid-row: 2;
+    grid-column: 2;
+    display: flex;
+    z-index: 1;
+}
+#fateCards {
+    grid-column: 1;
+    grid-row: 3;
+    place-self: start start;
+    
+    // box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+    // border-radius: 10px;
+    // background-image: url('img/fl_fate.jpg');
+    // background-size: auto 100%;
+}
+#corruptionCard {
+  grid-column: 1;
+  grid-row: 2;
+  place-self: center start;
+  
+  width: var(--cardwidth);
+  height: var(--cardheight);
+  
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  background-image: url('img/fl_corruption_cards.jpg');
+  background-size: auto 100%;
+  background-position-x: 100%;
+
+  &[data-players="6"] {
+    background-position-x: 0%;
+  }
+}
+
+#deck {
+    grid-column: 1;
+    grid-row: 2;
+    place-self: center end;
+}
+#discard {
+    grid-column: 2;
+    grid-row: 1;
+    place-self: end center;
+    
+    top:20%;
+    .bga-cards_deck-counter.round {
+        top:82%;
+    }
+    .card {
+        transform: rotate(90deg);
+    }
+}
+
+#graveyard_cards {
+    grid-column: 3;
+    grid-row: 2;
+    place-self: center start;
+}
+
+#tavern_stock {
+    grid-column: 2;
+    grid-row: 3;
+    place-self: start center;
+
+    .slot {
+        width: var(--cardwidth);
+        height: var(--cardheight);
+    }
+}
+
+.cards-stack[data-empty="true"] {
+    width: var(--cardwidth);
+    height: var(--cardheight);
+    border-radius: 10px;
+    
+    border: 1px solid white;
+    background-color: #FFFFFF66;
+    //box-shadow: 5px 5px 3px #60c2cb66;
+
+    .bga-cards_deck-counter {
+        display: none;
+    }
+    &#discard {
+        transform: rotate(90deg);
+    }
+}
+
+#power-track {
+    margin: auto;
+    position: relative;
+    width:77%;
+    height:43%;
+
+    .slot-1 {left:0; }
+    .slot-2 {left:8.5%*1; }
+    .slot-3 {left:8.5%*2; }
+    .slot-4 {left:8.5%*3; }
+    .slot-5 {left:8.5%*4; }
+    .slot-6 {left:8.5%*5; }
+    .slot-7 {left:8.5%*6; }
+    .slot-8 {left:8.5%*7; }
+    .slot-9 {left:8.5%*8; }
+    .slot-10 {left:8.5%*9; }
+    .slot-11 {left:8.5%*10; }
+    .slot-12 {left:8.5%*11; }
+    .slot-13 {left:8.5%*12; }
+}
+.power-token {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-image: url('img/fl_tokens.png'); 
+    //background-image: url('img/tokens.png'); 
+
+    &#empire-token { 
+        background-position: 50% 0%;  
+        top:10%; 
+    }
+    &#tribes-token { 
+        background-position: 0% 0%;   
+        top:40%;
+    }
+    &#guardian-token { 
+        background-position: 100% 0%;   
+        top:70%;
+    }
+}
+.transition-token {
+    transition: .75s ease-in-out;
+}
+
+/** Players layout **/
+// #player_tables, #card-pick {
+//     .card {
+//         margin:5px;
+//     }
+// }
+#player_tables {
+    margin-top:30px;
+}
+
+.player-table {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    border: 3px solid #000;
+    border-radius: 15px;
+    padding:10px;
+    //margin-top:40px;
+    gap: 10px;
+}
+
+.player-head {
+    //position: absolute;
+    display: inline-block;
+    font-weight: 900;
+    font-size:xx-large;
+
+    background: #ffffff8a;
+    //border: 1px solid #000;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 15px 0 10px 0px;
+    margin-left: 15px;
+}
+
+.horizontal_player_board .title-faction:has(.card-stock:empty) {
+    display: none;
+}
+
+.title-faction {
+    position:relative;
+    padding:0px 10px 10px;
+    
+    &[data-faction="1"] { color: #030303; }
+    &[data-faction="2"] { color: #0d66dad5; }
+    &[data-faction="3"] { color: #d30606; }
+    &[data-faction="4"] { color: #4fc720; }
+
+    &[data-faction="5"] { color: #812859; }
+
+    &[data-faction="6"] { color: #d7b019; }
+    &[data-faction="6"]:has(.card-stock:empty) { display: none; }
+
+    font-weight: 700;
+    font-size: larger;
+    text-align: center;
+}
+
+.player-table-card-wrapper {
+    //padding-top: 20px;
+    border: 1px solid black;
+    border-radius: 15px;
+    position: relative;
+    //background: #FFFFFF66;
+    background: #ffffff8a;//rgb(227 221 221 / 54%)
+    min-width: var(--cardwidth);
+    display: inline-flex;
+    .title {
+        //top: 20px;
+
+        //position: absolute;
+       // margin: 0 0 0 10px;
+        //border: 1px solid #000;
+        border-radius: 0px 15px 15px 0px;
+        padding: 9px;
+        font-weight: 900;
+        background-color: ghostwhite;
+
+        transform:rotate(180deg);
+        writing-mode: vertical-lr;
+        text-align: center;
+
+        z-index: -1;
+   }
+
+   .card-icon.icon {
+        position: absolute;
+        margin: 5px 0 0 3px;
+   }
+   &[data-current-player="false"] {
+        display: none;
+    }
+}

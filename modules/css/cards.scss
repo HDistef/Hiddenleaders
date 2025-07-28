@@ -1,0 +1,421 @@
+$UNDEAD: 1;
+$WATER_FOLK: 2;
+$EMPIRE: 3;
+$TRIBES: 4;
+$EMPEROR: 10;
+
+$LEMRON: 1;
+$CYRA: 2;   
+$MYRAD: 3;
+$XIADUL: 4;
+$PAVYR: 5;
+$ENNED: 6;
+//FORGOTTEN LEGENDS
+$TISSA: 7;
+$ULC: 8;
+$IRAFEL: 9;
+$VYMA: 10;
+
+.leader-card {
+    position: relative;
+    width: var(--cardwidth);
+    height: var(--cardheight);
+    
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+
+    background-size: auto 100%;
+    background-image: url('img/leaders.jpg');
+
+    &[data-leader-id="0"] {
+        background-image: url('img/card-back.jpg');
+        background-position: 0% 0%;
+    }
+
+    &[data-leader-id="#{$LEMRON}"] {
+        background-position-x: 0%;
+        background-position-y: 0%;
+    }
+    &[data-leader-id="#{$CYRA}"] {
+        background-position-x: calc(#{$CYRA - 1} * 100% / 5);
+        background-position-y: 0%;
+    }
+    &[data-leader-id="#{$MYRAD}"] {
+        background-position-x: calc(#{$MYRAD - 1} * 100% / 5);
+        background-position-y: 0%;
+    }
+    &[data-leader-id="#{$XIADUL}"] {
+        background-position-x: calc(#{$XIADUL - 1} * 100% / 5);
+        background-position-y: 0%;
+    }
+    &[data-leader-id="#{$PAVYR}"] {
+        background-position-x: calc(#{$PAVYR - 1} * 100% / 5);
+        background-position-y: 0%;
+    }
+    &[data-leader-id="#{$ENNED}"] {
+        background-position-x: calc(#{$ENNED - 1} * 100% / 5);
+        background-position-y: 0%;
+    }
+
+    &[data-leader-id="#{$TISSA}"] {
+        background-image: url('img/fl_leaders.jpg');
+        background-position-x: calc(#{$TISSA - 6 - 1} * 100% / 3);
+        background-position-y: 0%;
+    }
+    &[data-leader-id="#{$ULC}"] {
+        background-image: url('img/fl_leaders.jpg');
+        background-position-x: calc(#{$ULC - 6 - 1} * 100% / 3);
+        background-position-y: 0%;
+    }
+    &[data-leader-id="#{$IRAFEL}"] {
+        background-image: url('img/fl_leaders.jpg');
+        background-position-x: calc(#{$IRAFEL - 6 - 1} * 100% / 3);
+        background-position-y: 0%;
+    }
+    &[data-leader-id="#{$VYMA}"] {
+        background-image: url('img/fl_leaders.jpg');
+        background-position-x: calc(#{$VYMA - 6 - 1} * 100% / 3);
+        background-position-y: 0%;
+    }
+}
+// .tooltip-herocard {
+//     position: relative;
+//     width: 281px;
+//     height: 394px;
+//     margin: 5px;
+//     border-radius: 10px;
+//     background-image: url('img/cards.jpg');
+
+//     @for $index from 1 through 14 {
+//         &[data-number="#{0 + $index}"] {
+//             background-position: calc(($index - 1) * 100% / 13) 0%;
+//         }
+//     }
+    
+//     @for $index from 1 through 14 {
+//         &[data-number="#{13 + $index}"] {
+//             background-position: calc(($index - 1) * 100% / 13) 33.33%;
+//         }
+//     }
+    
+//     @for $index from 1 through 14 {
+//         &[data-number="#{26 + $index}"] {
+//             background-position: calc(($index - 1) * 100% / 13) 66.66%;
+//         }
+//     }
+    
+//     @for $index from 1 through 14 {
+//         &[data-number="#{39 + $index}"] {
+//             background-position: calc(($index - 1) * 100% / 13) 100%;
+//         }
+//     }
+    
+//     @for $index from 1 through 14 {
+//         &[data-number="#{52 + $index}"] {
+//             background-position: calc(($index - 1) * 100% / 13) 100%;
+//         }
+//     }
+    
+//     @for $index from 1 through 6 {
+//         &[data-number="#{65 + $index}"] {
+//             background-position: calc(($index - 1) * 100% / 13) 100%;
+//         }
+//     }
+// }
+
+.card[data-side="front"] .card-sides {
+    transition: all .5s ease-in-out;
+    
+    &:hover{
+        transform: scale(1.1);
+        z-index: 10 !important;
+    }
+}
+
+.wg-card-gametext {
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // position: absolute;
+    // width: 113px;
+    // height: 48px;
+    // top: 140px;
+    // left: 16px;
+    // gap: 1px;
+
+    .wg-card-gametext-title {
+        font-family: Bangers;
+        background-color: black;
+        font-size: 15px;
+        text-transform: uppercase;
+        /* line-height: 8px; */
+        text-align: center;
+        color: white;
+        white-space: nowrap;
+        left: 43px;
+        top: 5px;
+        position: absolute;
+        width: 120px;
+    }
+
+    .wg-card-gametext-divider {
+        height: 160px;
+        position: relative;
+    }
+
+    .wg-card-gametext-text {
+        font-family: AveriaSandLibre;
+        position: absolute;
+        height:55px;
+        width: 169px;
+        bottom:0px;
+        padding:3px;
+        background-color: white;
+        font-size: 11px;
+        //    line-height: 7px;
+        text-align: center;
+        
+        --iconWidth: 26px;
+        --iconHeight: 26px;
+        
+    //    p {
+    //       margin: 2px 0 0 0;
+    //    }
+    }
+}
+
+.card {
+    position: relative;
+    //margin: 5px;
+    width: var(--cardwidth);
+    height: var(--cardheight);
+
+    // box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+
+    // &[data-side="front"] {
+    //     transition: all .5s ease-in-out;
+
+    //     &:hover{
+    //         transform: scale(1.1);
+    //         z-index: 850 !important;
+    //     }
+    // }
+
+    .card-sides {
+        
+        .card-side {
+            border-radius: 10px;
+            
+            &.fatecard-back {  
+                background-size: auto 100%;
+                background-image: url('img/fl_fate.jpg');
+            }
+            &.fatecard-front {  
+                background-size: auto 100%;
+                background-image: url('img/fl_fate.jpg');
+
+                @for $index from 1 through 6 {
+                    &[data-number="#{0 + $index}"] {
+                        background-position-x: calc(($index) * 100% / 6);
+                    }
+                }
+            }
+            
+            &.artifactcard-back {  
+                background-size: auto 100%;
+                background-image: url('img/fl_artifacts.jpg');
+                
+            }
+            &.artifactcard-front {  
+                background-size: auto 100%;
+                background-image: url('img/fl_artifacts.jpg');
+
+                @for $index from 1 through 12 {
+                    &[data-number="#{0 + $index}"] {
+                        background-position-x: calc(($index - 1) * 100% / 11);
+                    }
+                }
+            }
+
+            &.herocard-back {  
+                background-size: auto 100%;
+                background-image: url('img/card-back.jpg');
+                background-position: 100% 0%;
+            }
+
+            &.herocard-front {
+                background-image: url('img/cards.jpg');
+                background-size: auto 700%;
+
+                
+                // @for $index from 1 through 73 {
+                //     &[data-number="#{$index}"] {
+                //         background-position: calc(($index - 1) % 13 * 100% / 13) calc(($index - 1) % 6 * 100% / 5);
+                //     }
+                // }
+
+                @for $index from 1 through 14 {
+                    &[data-number="#{0 + $index}"] {
+                        background-position: calc(($index - 1) * 100% / 13) 0%;
+                    }
+                }
+                
+                @for $index from 1 through 14 {
+                    &[data-number="#{14 + $index}"] {
+                        background-position: calc(($index - 1) * 100% / 13) 16.6666%;
+                    }
+                }
+                
+                @for $index from 1 through 14 {
+                    &[data-number="#{28 + $index}"] {
+                        background-position: calc(($index - 1) * 100% / 13) 33.3333%;
+                    }
+                }
+                
+                @for $index from 1 through 14 {
+                    &[data-number="#{42 + $index}"] {
+                        background-position: calc(($index - 1) * 100% / 13) 50%;
+                    }
+                }
+    
+                @for $index from 1 through 14 {
+                    &[data-number="#{56 + $index}"] {
+                        background-position: calc(($index - 1) * 100% / 13) 66.6666%;
+                    }
+                }
+                
+                @for $index from 1 through 14 {
+                    &[data-number="#{70 + $index}"] {
+                        background-position: calc(($index - 1) * 100% / 13) 83.3333%;
+                    }
+                }
+
+                @for $index from 1 through 6 {
+                    &[data-number="#{84 + $index}"] {
+                        background-position: calc(($index - 1) * 100% / 13) 100%;
+                    }
+                }
+        
+                // Expansion
+                @for $index from 1 through 7 {
+                    &[data-number="#{90 + $index}"] {
+                        background-image: url('img/fl_cards.jpg');
+                        background-size: auto 500%;
+                        background-position: calc(($index - 1) * 100% / 6) 0%;
+                    }
+                }
+                
+                @for $index from 1 through 7 {
+                    &[data-number="#{97 + $index}"] {
+                        background-image: url('img/fl_cards.jpg');
+                        background-size: auto 500%;
+                        background-position: calc(($index - 1) * 100% / 6) 25%;
+                    }
+                }
+                
+                @for $index from 1 through 7 {
+                    &[data-number="#{104 + $index}"] {
+                        background-image: url('img/fl_cards.jpg');
+                        background-size: auto 500%;
+                        background-position: calc(($index - 1) * 100% / 6) 50%;
+                    }
+                }
+                
+                @for $index from 1 through 7 {
+                    &[data-number="#{111 + $index}"] {
+                        background-image: url('img/fl_cards.jpg');
+                        background-size: auto 500%;
+                        background-position: calc(($index - 1) * 100% / 6) 75%;
+                    }
+                }
+                
+                @for $index from 1 through 2 {
+                    &[data-number="#{118 + $index}"] {
+                        background-image: url('img/fl_cards.jpg');
+                        background-size: auto 500%;
+                        background-position: calc(($index - 1) * 100% / 6) 100%;
+                    }
+                }
+            }
+        }
+    }
+
+    
+}
+
+.bga-cards_selectable-card:not(.bga-cards_disabled-card) {
+    &:not(.bga-cards_selected-card) {
+        .front, .back, &.icons-corruption {
+            animation: selectable-card-animation 1.5s alternate infinite;
+        }
+    }
+
+    // .card-side {
+    //     box-shadow: unset;
+    // }
+}    
+
+.bga-cards_selected-card:not(.bga-cards_disabled-card) {
+    .front, .back, &.icons-corruption {
+        box-shadow: inset 0 0 10px 5px orange;
+    }
+    // .card-side {
+    //     box-shadow: unset;
+    // }
+}
+
+@keyframes selectable-card-animation {
+    0% { 
+      //background: var(--background-lighter);
+      box-shadow: inset 0 0 5px 5px #b18be2;
+    }
+    100% { 
+      //background: var(--background-darker);
+      box-shadow: inset 0 0 10px 5px #4020cc;
+    }
+}
+
+.divSelectable {
+    animation: selectable-card-animation 1s alternate infinite ease-in-out;
+    box-shadow: unset;
+    cursor:pointer;
+}
+
+.pile-counter {
+    position: absolute;
+    bottom: -18px;
+    right: 0;
+    left: 0;
+    font-size: 80%;
+    text-align: center;
+    color: lightcyan;
+    width: unset;
+    height: unset;
+    top: unset;
+}
+
+.help-marker {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    padding: 2px;
+    cursor: zoom-in !important;
+    pointer-events: initial !important;
+    user-select: initial !important;
+    font-size: 20px;
+ }
+// .hero-card.bga-cards_selectable-card {
+//     /*box-shadow: 0 0 5px 3px lightgoldenrodyellow;*/
+//     box-shadow: 0 0 8px 8px orange;
+// }
+// .hero-card.bga-cards_selectable-card .card-side {
+//     box-shadow: unset;
+// }
+
+// .hero-card.bga-cards_selected-card {
+//     box-shadow: 0 0 5px 3px blueviolet;
+// }
+// .hero-card.bga-cards_selected-card .card-side {
+//     box-shadow: unset;
+// }

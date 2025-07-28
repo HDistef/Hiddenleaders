@@ -1,0 +1,219 @@
+@use 'sass:list';
+
+#logs {
+  --iconWidth: 25px;
+  --iconHeight: 25px;
+}
+
+#replaylogs, #player_boards, #maintitlebar_content, .cardToolTip, .player-table-card-wrapper, #score-table, .title-faction {
+  --iconWidth: 30px;
+  --iconHeight: 30px;
+}
+caption {
+  --iconWidth: 75px;
+  --iconHeight: 75px;
+}
+.counters {
+  --cardwidth: calc(281px*0.05);
+  --cardheight: calc(394px*0.05);
+}
+
+//#logs, #player_boards, #maintitlebar_content, .cardToolTip, .player-table-card-wrapper, caption, #score-table, .title-faction, .wg-card-gametext {
+.card-name {
+  font-weight: bold;
+
+  &.faction-1 { color: #030303; }
+  &.faction-2 { color: #0d66dad5; }
+  &.faction-3 { color: #d30606; }
+  &.faction-4 { color: #4fc720; }
+  //&.faction-5 { color: #171a1a00; }
+  &.faction-10 { color: #d7b019; }
+}   
+
+.span-value {
+  font-size: x-large;
+  vertical-align: middle;
+}
+
+.icon-artifactToken {
+  background-image: url('img/fl_artifact_token.png');
+  background-size: cover;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  z-index: 100;
+  left:2px;
+  
+  &[data-number="1"] { top:5px; }
+  &[data-number="2"] { top:42px; }
+  &[data-number="3"] { top:80px; }
+  //top: calc(10px * var(--x));
+}
+.card-icon {
+  display:inline-block;
+  width: var(--iconWidth);
+  height: var(--iconHeight);
+  background-size: auto 100%;
+  vertical-align: middle;
+  //margin: 0px -2px 0px -2px;
+
+  // &#empire-token-log { 
+  //   background-image: url('img/tokens.png'); 
+  //   background-position: 100% 0%;   
+  // }
+  // &#tribes-token-log { 
+  //   background-image: url('img/tokens.png'); 
+  //   background-position: 0% 0%;   
+  // }
+  &#empire-token-log { 
+    background-image: url('img/fl_tokens.png'); 
+    background-position: 50% 0%;   
+  }
+  &#tribes-token-log { 
+    background-image: url('img/fl_tokens.png'); 
+    background-position: 0% 0%;   
+  }
+  &#guardian-token-log { 
+    background-image: url('img/fl_tokens.png'); 
+    background-position: 100% 0%;   
+  }
+
+  &.faction {
+    background-image: url('img/fl_factions.png');
+    
+    &.faction-1 {
+      background-position-x: 0%;
+    }
+    &.faction-2 {
+      background-position-x: 75%;
+    }
+    &.faction-3 {
+      background-position-x: 25%;
+    }
+    &.faction-4 {
+      background-position-x: 50%;
+    }
+    &.faction-5 {
+      background-position-x: 100%;
+    }
+    &.faction-10 { 
+      background-image:none; 
+      display: none;
+    }
+    // background-image: url('img/factions.png');
+    // background-size: auto 110%;
+    
+    // &.faction-1 {
+    //   background-position-x: 0%;
+    // }
+    // &.faction-2 {
+    //   background-position-x: 100%;
+    // }
+    // &.faction-3 {
+    //   background-position-x: 33.3333%;
+    // }
+    // &.faction-4 {
+    //   background-position-x: 66.6666%;
+    // }
+    &.faction-10 { 
+      background-image:none; 
+      display: none;
+    }
+  }
+
+  &.icon {
+    background-image: url('img/icons.png');
+
+    // @for $index from 1 through 7 {
+    //     &.icon-#{$index} {
+    //         background-position-x: calc(($index - 1) * 100% / 6);
+    //     }
+    // }
+
+    $icons: ( 'graveyard', 'tavern', 'harbor', 'wilderness', 'visible', 'hidden', 'player', 'hand' );
+
+    @each $icon in $icons {
+      &.icon-#{$icon} {
+        background-position-x: calc((list.index($icons, $icon) - 1) * 100% / 6);
+      }
+    }
+    
+
+    &.icon-slow {
+      background-image: url('img/fl_icons.png');
+      background-position-x: 0%;
+    }
+    &.icon-artifact {
+      background-image: url('img/fl_icons.png');
+      background-position-x: 50%;
+    }
+    &.icon-fast {
+      background-image: url('img/fl_icons.png');
+      background-position-x: 100%;
+    }
+    // &.icon-corruption {
+    //   background-image: url('img/fl_icons.png');
+    //   background-position-x: 0%;
+    // }
+
+  }
+  &.icon-10 { 
+    background-image: url('img/hand-icon.svg'); 
+  }
+  
+  &.icons-corruption {
+    border-radius: 0px;
+    box-shadow:none;
+    background-image: url('img/fl_corruption.png');
+    background-color:aliceblue;
+    
+    @for $index from 0 through 6 {
+      &[data-type="#{$index}"] {
+        background-position-x: calc(($index) * 100% / 6);
+      }
+      // &[data-number="#{0 + $index}"] {
+      //     background-position-x: calc(($index) * 100% / 6);
+      // }
+    }
+    
+    &.onCorruptionCard {
+      position: absolute;
+      margin-left:24px;
+
+      &.token_2 {
+        margin-top:80px;
+      }
+      &.token_1 {
+        margin-top:160px;
+      }
+    }
+
+    &.onHeroCard {
+      position: absolute;
+      right: 0;
+      z-index: 100;
+    }
+
+    // $corruptions: ( 'corruption', 'x2', 'corruption-empire', 'corruption-tribes', 'corruption-undead', 'corruption-water_folk', 'corruption-guardian' );
+
+    // @each $icon in $corruptions {
+    //   &.icon-#{$icon} {
+    //     background-position-x: calc((list.index($corruptions, $icon) - 1) * 100% / 6);
+    //   }
+    // }
+    //background-image: url('img/fl_corruption.png');
+    width: 50px;
+    height: 50px;
+    &[data-side="back"]{  
+        background-position-x: 0%;
+    }
+    &[data-side="front"] {  
+      @for $index from 0 through 5 {
+          &[data-number="#{0 + $index}"] {
+              background-position-x: calc(($index) * 100% / 6);
+          }
+      }
+    }
+  }
+}
+//}

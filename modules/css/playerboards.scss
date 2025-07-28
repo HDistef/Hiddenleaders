@@ -1,0 +1,41 @@
+.counters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 10px;
+  row-gap: 5px;
+  margin-top: 10px;
+  cursor:default;
+}
+
+// .counter-icon {
+//   display: inline-block;
+//   // width: 32px;
+//   // height: 32px;
+//   background-repeat: no-repeat;
+//   vertical-align: bottom;
+// }
+
+.counter-value {
+  vertical-align: middle;
+  line-height: 32px;
+  font-size: larger;
+}
+
+.break {
+  flex-basis: 100%;
+}
+
+#player_board_winning_faction_name {
+
+  &[data-faction="1"] { box-shadow: inset 0 0 10px 4px #030303; }
+  &[data-faction="2"] { box-shadow: inset 0 0 10px 4px #0d66dad5; }
+  &[data-faction="3"] { box-shadow: inset 0 0 10px 4px #d30606; }
+  &[data-faction="4"] { box-shadow: inset 0 0 10px 4px #4fc720; }
+  &[data-faction="5"] { box-shadow: inset 0 0 10px 4px #70185a; }
+
+  font-weight: 500;
+  width: fit-content;
+  padding:8px;
+  transition: all 1s ease-in;
+}
